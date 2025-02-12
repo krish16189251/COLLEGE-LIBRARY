@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href = "subject.css">
+
+</head>
+<body>
+  <div class="search-container">
+    <input type="text" id="search-input" class="search-input" placeholder="Search..." oninput="showSuggestions()" onfocus="toggleSuggestions(true)" onblur="toggleSuggestions(false)">
+    <div id="suggestions" class="suggestions"></div>
+    <button onclick="search()" class="search-button">Search</button>
+  </div>
+
+  <div id="search-results" class="product-list"></div>
+<div class="container">
+<div class="flex">
+    <div class="book-image"><img src=""></div>
+    <div class="book-name">name</div>
+    <div class="avail-books">NO OF AVAILABLE BOOKS</div>
+</div>
+</div>
+</body>
+<script>
+     const products = [
+        { name: '8086__MICROPROCESSOR and Applications', description: 'Number of available books', image: 'https://iili.io/d090dFa.md.jpg'},
+         { name: 'ANALOG & DIGITAL ELECTRONICS 3rd year', description: 'Number of available books', image: 'https://iili.io/d091R0g.md.jpg'},
+          { name: 'analog circuits and communication electronics', description: 'Number of available books', image: 'https://iili.io/d09GjDl.md.jpg'},
+           { name: 'applied applications', description: 'Number of available books', image: 'https://iili.io/d09XEX4.md.jpg'},
+         { name: 'basic circuit theory and circuit analysis', description: 'Number of available books', image: 'https://iili.io/d09j3S1.md.jpg'},
+            { name: 'basic circuit theory and circuit analysis   ', description: 'Number of available books', image: 'https://iili.io/d09j3S1.md.jpg'},
+            { name: 'circuit theory and electronic devices 1st year ', description: 'Number of available books', image: 'https://iili.io/d09wtQj.md.jpg'},
+            { name: 'CIRCUITS AND NETWORKS ANALYSIS AND SYNTHESIS      ', description: 'Number of available books', image: 'https://iili.io/d09ezIn.md.jpg'},
+            { name: 'ELECTRIC CIRCUITS__SEVENTH EDITION (1)            ', description: 'Number of available books', image: 'https://iili.io/d098j24.md.jpg'},
+            { name: 'electricity and magnetism      ', description: 'Number of available books', image: 'https://iili.io/d094nxS.md.jpg'},
+            { name: 'Electricity and Magnetism with Electronics', description: 'Number of available books', image: 'https://iili.io/d09PmDQ.md.jpg'},
+            { name: 'ELECTRICITY, MAGNETISM & ELECTRONICS 5th sem    ', description: 'Number of available books', image: 'https://iili.io/d09LANf.md.jpg'},
+            { name: 'ELECTRICITY, MAGNETISM AND ELECTRONICS', description: 'Number of available books', image: 'https://iili.io/d09Zf4I.md.jpg'},
+            { name: 'electronic communication', description: 'Number of available books', image: 'https://iili.io/d09D3gI.md.jpg'},
+            { name: 'ELECTRONIC COMMUNICATION SYSTEMS', description: 'Number of available books', image: 'https://iili.io/d09mqoG.md.jpg'},
+            { name: 'Electricity and Magnetism with Electronics ', description: 'Number of available books', image: 'https://iili.io/d09PmDQ.md.jpg'},
+            { name: 'ELECTRICITY, MAGNETISM & ELECTRONICS 5th sem', description: 'Number of available books', image: 'https://iili.io/dEjiqmv.md.jpg'},
+            { name: 'ELECTRICITY, MAGNETISM AND ELECTRONICS ', description: 'Number of available books', image: 'https://iili.io/dEjpzCJ.md.jpg'},
+            { name: 'electronic communication  ', description: 'Number of available books', image: 'https://iili.io/dEjyjlR.md.jpg'},
+            { name: 'ELECTRONIC COMMUNICATION SYSTEMS ', description: 'Number of available books', image: 'https://iili.io/dEw9DkN.md.jpg'},
+            { name: 'electronic devices and circuits sem2 ', description: 'Number of available books', image: 'https://iili.io/dEwdjLX.md.jpg'},
+            { name: 'ELECTRONIC DEVICES__CONVENTIONAL CURRENT VERSION ', description: 'Number of available books', image: 'https://iili.io/dEwC9Hu.md.jpg'},
+            { name: 'electronic instrumentation 3rd year 4th sem ', description: 'Number of available books', image: 'https://iili.io/dEwzrTg.md.jpg'},
+            { name: 'ELECTRONIC INSTRUMENTATION AND MEASUREMENTS', description: 'Number of available books', image: 'https://iili.io/dEwTVWb.md.jpg'},
+            { name: 'electronics principles', description: 'Number of available books', image: 'https://iili.io/dEw7ltt.md.jpg'},
+            { name: 'p-amps and linear integral circuits   ', description: 'Number of available books', image: 'https://iili.io/dEw0g9f.md.jpg'},
+            { name: 'microprocessor architecture programing    and application with the 8085 ', description: 'Number of available books', image: 'https://iili.io/dEw0g9f.md.jpg'},
+            { name: 'microprocessor architecture programing    and application with the 8085   ', description: 'Number of available books', image: 'https://iili.io/dEwwoDg.md.jpg'},
+            { name: 'Fundamentals of Digital Circuits 4th edition ', description: 'Number of available books', image: 'https://iili.io/dENfCYu.md.jpg'},
+            { name: 'Fundamentals of Microprocessors $ microcontrollers ', image: 'https://iili.io/dENqT9s.md.jpg'},
+            { name: 'linear integrated circuits ', description: 'Number of available books', image: 'https://iili.io/dENnbOg.md.jpg'},
+            { name: 'microcontrollers', description: 'Number of available books', image: 'https://iili.io/dENAurx.md.jpg'},
+            { name: 'Microcontrollers 2e ', description: 'Number of available books', description: 'Number of available books', image: 'https://iili.io/dENYacJ.md.jpg'},
+            { name: 'MICROPROCESSORS AND INTERFACING  ', description: 'Number of available books', image: 'https://iili.io/dENcm3g.md.jpg'},
+            { name: 'OP-AMPS AND LINEAR INTEGRATED CIRCUITS ', description: 'Number of available books', image: 'https://iili.io/dEN0sqP.md.jpg'},
+            { name: 'Optics and Spectroscopy ', description: 'Number of available books', image: 'https://iili.io/dENVx9e.md.jpg'},
+            { name: 'PRINCIPLES of ELECTRONICS ', description: 'Number of available books', image: 'https://iili.io/dENOS7p.md.jpg'},
+            { name: 'switching and finite automata theory 7 ', description: 'Number of available books', image: 'https://iili.io/dEN8K3G.md.jpg'},
+            { name: 'Taubs PRINCIPLES OF COMMUNICATION SYSTEMS 4e ', description: 'Number of available books', image: 'https://iili.io/dENgMP9.md.jpg'},
+            { name: 'unified electronics (A $ T) 11 ', description: 'Number of available books', image: 'https://iili.io/dENQQ6l.md.jpg'},
+        
+        ];
+</script>
+      
+
+ <script src="subject.js"></script>
+</html>

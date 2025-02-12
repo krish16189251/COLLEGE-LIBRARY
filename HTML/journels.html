@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href = "subject.css">
+
+</head>
+<body>
+  <div class="search-container">
+    <input type="text" id="search-input" class="search-input" placeholder="Search..." oninput="showSuggestions()" onfocus="toggleSuggestions(true)" onblur="toggleSuggestions(false)">
+    <div id="suggestions" class="suggestions"></div>
+    <button onclick="search()" class="search-button">Search</button>
+  </div>
+
+  <div id="search-results" class="product-list"></div>
+<div class="container">
+<div class="flex">
+    <div class="book-image"><img src=""></div>
+    <div class="book-name">name</div>
+    <div class="avail-books">NO OF AVAILABLE BOOKS</div>
+</div>
+</div>
+</body>
+<script>
+     const products = [
+    { name: 'INTERNATIONAL JOURNAL OF COMPUTER SCIENCE 22/12/2022', description:'Number of available books', image: 'https://iili.io/dNZFIBp.jpg' },
+    { name: 'JOURNAL OF COMPUTER SCIENCE AND APPLICATIONS 22/12/2022', description:'Number of available books', image: 'https://iili.io/dNZf35F.jpg' },
+    { name: 'JOURNAL OF COMPUTER SCIENCE AND APPLICATIONS 19/7/2023', description:'Number of available books', image: 'https://iili.io/dNZBgWJ.jpg' },
+    { name: 'CURRENT DEVELOPMENT IN ARTIFICIAL INTELLIGENCE 11/12/2023', description:'Number of available books', image: 'https://iili.io/dNZngFR.jpg' },
+    { name: 'INTERNATIONAL JOURNAL OF COMPUTER AND INTERNET SECURITY 19/7/2023', description:'Number of available books', image: 'https://iili.io/dNZa2GS.jpg' },
+    { name: 'CURRENT DEVELOPMENT IN ARTIFICIAL INTELLIGENCE 19/7/2023', description:'Number of available books', image: 'https://iili.io/dNZcTbf.jpg' },
+    { name: 'CURRENT DEVELOPMENT IN ARTIFICIAL INTELLIGENCE 22/12/2022', description:'Number of available books', image: 'https://iili.io/dNZ1WXf.jpg' },
+    { name: 'JOURNAL OF COMPUTER SCIENCE AND APPLICATIONS 11/02/2023', description:'Number of available books', image: 'https://iili.io/dNZMUIn.jpg' },
+    { name: 'INTERNATIONAL JOURNAL OF DIGITAL INFORMATION TECHNOLOGY 11/12/2023', description:'Number of available books', image: 'https://iili.io/dNZhKpS.jpg' },
+    { name: 'INTERNATIONAL JOURNAL OF DIGITAL INFORMATION TECHNOLOGY 19/7/2023', description:'Number of available books', image: 'https://iili.io/dNZhKpS.jpg' },
+    { name: 'INTERNATIONAL JOURNAL OF DIGITAL INFORMATION TECHNOLOGY 22/12/2022', description:'Number of available books', image: 'https://iili.io/dNZtTKJ.jpg' },
+    { name: 'INTERNATIONAL JOURNAL OF INDUSTRIAL ELECTRONICS AND CONTROL 6/12/2022', description:'Number of available books', image: 'https://iili.io/dNZb5Qt.jpg' },
+    { name: 'INTERNATIONAL JOURNAL OF ADVANCES IN PHYSICS 19/7/2023', description:'Number of available books', image: 'https://iili.io/dNtd45u.jpg' },
+    { name: 'INTERNATIONAL JOURNAL OF ADVANCES IN PHYSICS 7/12/2022', description:'Number of available books', image: 'https://iili.io/dNtFjOg.jpg' },
+    { name: 'INTERNATIONAL JOURNAL OF MICROCIRCUITS AND ELECTRONICS 19/7/2023', description:'Number of available books', image: 'https://iili.io/dNtpDVS.jpg' },
+    { name: 'INTERNATIONAL JOURNAL OF MICROCIRCUITS AND ELECTRONICS 05/01/2023', description:'Number of available books', image: 'https://iili.io/dNDHiHg.jpg' },
+    { name: 'INDIAN JOURNAL OF ELECTRONICS AND MICROCIRCUITS 7/12/2016', description:'Number of available books', image: 'https://iili.io/dNDfWIn.jpg' },
+    { name: 'INTERNATIONAL JOURNAL OF INDUSTRIAL ELECTRONICS AND CONTROL 19/07/2023', description:'Number of available books', image: 'https://iili.io/dNDcuWv.jpg' },
+    { name: 'INTERNATIONAL JOURNAL OF CHEMISTRY AND APPLICATIONS 19/7/2023', description:'Number of available books', image: 'https://iili.io/dNDVNGs.jpg' },
+    { name: 'INTERNATIONAL JOURNAL OF CHEMISTRY AND APPLICATIONS 22/2/2022', description:'Number of available books', image: 'https://iili.io/dNDvKUF.jpg' },
+    { name: 'INTERNATIONAL JOURNAL OF COMPUTER AND INTERNET SECURITY 11/12/2023', description:'Number of available books', image: 'https://iili.io/dNDUqJ9.jpg' }
+];
+</script>
+      
+
+               <script src="subject.js"></script>
+               </html>
+           

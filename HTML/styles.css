@@ -1,0 +1,141 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Londrina+Sketch&display=swap');
+body {
+    background : url(https://iili.io/2UBLQgs.jpg);
+    font-family: Roboto Condensed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    
+    
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+h2 {
+    color: #fafffa;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+}
+
+form {
+ background:rgba(203, 225, 233, 0.235);
+    padding: 20px 40px;
+    border-radius: 10px;
+ /*   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);*/
+    text-align: center;
+ /*   backdrop-filter: blur(20px);*/
+}
+input {
+    backdrop-filter: blur(20px);
+    font-weight:bold;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+    background:rgba(137, 137, 255, 0.04);
+    
+}
+:-ms-input-placeholder{
+    color:white;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(45deg, #20917595, #2a7b969c);
+    border: none;
+    border-radius: 60px;
+    color:black;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight:bold;
+   /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);*/
+    transition: transform 0.2s;
+    box-shadow:inset 2px 2px 5px  rgba(0, 0, 0, 0.7);
+    
+}
+button:hover {
+    transform: scale(1.05);
+}
+@media  (max-width:480px) {
+    body{
+        background:url(https://img.freepik.com/premium-photo/stack-books-turquoise-background-vibrant-eyecatching-arrangement_521733-18739.jpg)
+    }
+    button{
+        background: linear-gradient(45deg, #75e6c9b0, #55b6d783);
+        color:black;
+        font-family: Roboto Condensed;
+        font-weight: 800;
+       h2{
+        color:rgb(18, 96, 138);
+       }
+        
+}
+
+}
+
+.glow-on-hover {
+    width: 150px;
+    height: 40px;
+    border: none;
+    outline: none;
+    color: #010101;
+    background: linear-gradient(45deg, #79b7b72b, #82a6b236);
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 30px;
+    transition: all 1s;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 30px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #75e6c9b0, #55b6d783);
+    left: 0;
+    top: 0;
+    border-radius: 30px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}

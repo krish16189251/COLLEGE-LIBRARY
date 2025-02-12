@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href = "subject.css">
+
+  </head>
+      <body>
+            <div class="search-container">
+              <input type="text" id="search-input" class="search-input" placeholder="Search..." oninput="showSuggestions()" onfocus="toggleSuggestions(true)" onblur="toggleSuggestions(false)">
+              <div id="suggestions" class="suggestions"></div>
+              <button onclick="search()" class="search-button">Search</button>
+            </div>
+
+            <div id="search-results" class="product-list"></div>
+          <div class="container">
+          <div class="flex">
+              <div class="book-image"><img src=""></div>
+              <div class="book-name">name</div>
+              <div class="avail-books">NO OF AVAILABLE BOOKS</div>
+          </div>
+          </div>
+       </body>
+      <script>
+    const products = [
+      {name: 'PROGRAMMING IN ANSI C 7TH EDITION', description: '', image: 'https://iili.io/dOKYW9s.jpg' },
+      { name: 'CLASSIC DATA STRUCTURES', description: '', image: 'https://iili.io/dOK02iQ.jpg' },
+      { name: 'CLOUD COMPUTING PEARSON', description: '', image: 'https://iili.io/dOKE2cB.jpg' },
+      { name: 'CLOUD COMPUTING', description:'' , image:  'https://iili.io/dOKMVje.jpg' },
+      { name: 'CLOUD COMPUTING', description: '', image: 'https://iili.io/dOKXYGa.jpg' },
+      { name: 'COMPUTER NETWORKS EDITION 5', description: '', image: 'https://iili.io/dOKjomB.jpg' },
+      { name: 'COMPUTER NETWORKS EDITION 6', description: '', image: 'https://iili.io/dOKwEyQ.jpg' },
+      { name: 'CORE JAVA', description: '  ', image: 'https://iili.io/dOKkcxV.jpg' },
+      {name: 'COMPUTER FUNDAMENTALS AND PHOTOSHOP', description: '   ', image: ' https://iili.io/dOK8xae.jpg' },
+      { name: 'COMPUTERS AND PROGRAMMING WITH C', description: '   ', image: 'https://iili.io/dOKUckg.jpg' },
+      { name: 'COMPUTER FUNDAMENTALS AND OFFICE TOOLS', description: '', image: 'https://iili.io/dOKgsKN.jpg' },
+      { name: 'COMPUTER FUNDAMENTALS AND OFFICE TOOLS', description: '', image: 'https://iili.io/dOK4bnf.jpg' },
+      { name: 'COMPUTER FUNDAMENTALS AND PHOTOSHOP', description: '', image: 'https://iili.io/dOKLG1f.jpg' },
+      { name: 'COMPUTER FUNDAMENTALS AND PHOTOSHOP', description: '  ', image: 'https://iili.io/dOKQvjt.jpg' },
+      { name: 'COMPUTER FUNDAMENTALS AND PHOTOSHOP', description: '', image: 'https://iili.io/dOKDACX.jpg' },
+      { name: 'COMPUTER FUNDAMENTALS AND OFFICE TOOLS', description: '  ', image: 'https://iili.io/dOKb4xS.jpg' },
+      {name: 'COMPUTER FUNDAMENTALS 6TH EDITION', description: '', image: 'https://iili.io/dOKpWGt.jpg' },
+      { name: 'CORE JAVA VOLUME-II', description: '  ', image: 'https://iili.io/dOf9shQ.jpg' },
+      { name: 'OBJECT ORIENTED PROGRAMMING WITH C++', description: '', image: 'https://iili.io/dOfJ9K7.jpg' },
+      { name: 'CRYPTOGRAPHY AND NETWORK SECURITY', description: '', image:  'https://iili.io/dOfdpa9.jpg' },
+      { name: 'CRYPTOGRAPHY AND NETWORK SECURITY', description: '', image: 'https://iili.io/dOf3D79.jpg' },
+      { name: 'CYBER SECURITY ESSENTIALS', description: '', image: 'https://iili.io/dOfq214.jpg' },
+      { name: 'CYBER SECURITY ', description: '', image: 'https://iili.io/dOfBriJ.jpg' },
+      { name: 'DATA MINING', description: '', image: 'https://iili.io/dOCO1Bp.jpg' },
+      {name: 'DATA STRUCTURES USING C', description: '', image: ' https://iili.io/dOC4knn.jpg' },
+      { name: 'DATA STRUCTURES USING C', description: '  ', image: 'https://iili.io/dOCyL79.jpg' },
+      { name: 'DATA WAREHOUSING AND DATA MINING', description: '', image: 'https://iili.io/dOnHRcB.jpg' },
+      { name: 'DATABASE MANAGEMENT SYSTEM', description: '', image: 'https://iili.io/dOndXTX.jpg' },
+      { name: 'DATABASE SYSTEMS', description: '  ', image: 'https://iili.io/dOzJylf.jpg' },
+      { name: 'DATA STRUCTURES USING C', description: '  ', image: 'https://iili.io/dOzFhs1.jpg' },
+      { name: 'DATABASE PRINCIPLES', description: '', image: 'https://iili.io/dOzKv4e.jpg' },
+      { name: 'DATABASE SYSTEM CONCEPTS', description: '', image: 'https://iili.io/dOzqI5J.jpg' },
+      {name: 'DATABASE MANAGEMENT SYSTEM', description: '', image: 'https://iili.io/dOzB0CB.jpg' },
+      { name: 'DATABASE MANAGEMENT SYSTEM', description: '  ', image: 'https://iili.io/dOzCGol.jpg' },
+      { name: 'DATABASE SYSTEMS', description: '  ', image: 'https://iili.io/dOzn5WQ.jpg' },
+      { name: 'DATABASE SYSTEM CONCEPTS', description: '', image:  'https://iili.io/dOzoE4S.jpg' },
+      { name: 'DATA COMMUNICATIONS AND NETWORKING', description: '', image: 'https://iili.io/dOzxtxj.jpg' },
+      { name: 'DATA COMMUNICATIONS AND NETWORKING 5E', description: '  ', image: 'https://iili.io/dOzIUaS.jpg' },
+      { name: 'DDC-21', description: '  ', image: 'https://iili.io/dOzu2e9.jpg' },
+      { name: 'DIGITAL DESIGN', description: '  ', image: 'https://iili.io/dOzuZYB.jpg' },
+      {name: 'DIGITAL LOGIC AND COMPUTER DESIGN', description: '', image: 'https://iili.io/dOzAv6v.jpg ' },
+      { name: 'DISTRIBUTED OPERATING SYSTEMS', description: '', image: 'https://iili.io/dOz53bt.jpg' },
+      { name: 'DISTRIBUTED SYSTEMS', description: '', image: 'https://iili.io/dOzV2xR.jpg' },
+      { name: 'DISTRIBUTED SYSTEMS', description: '', image: 'https://iili.io/dOzWO4S.jpg' },
+      { name: 'DATA STRUCTURES AND ALGORITHM ANALYSIS IN C++', description: '  ', image: 'https://iili.io/dOzhl5X.jpg' },
+      { name: 'DATA STRUCTURES AND ALGORITHM ANALYSIS IN JAVA 2ND EDITION', description: '  ', image: 'https://iili.io/dOzO5jn.jpg' },
+      { name: 'DATA STRUCTURES AND ALGORITHM ANALYSIS IN C++', description: '  ', image: 'https://iili.io/dOze4J2.jpg' },
+      { name: 'DATA STRUCTURES AND ALGORITHM ANALYSIS IN C++ PEARSON', description: '  ', image: 'https://iili.io/dOzv3pS.jpg' },
+      {name: 'DATA STRUCTURES THROUGH C', description: '  ', image: 'https://iili.io/dOzgcDN.jpg' },
+      { name: 'DATA STRUCTURES THROUGH C++', description: '   ', image: 'https://iili.io/dOz4ht2.jpg' },
+      { name: 'DATA STRUCTURES USING C', description: '  ', image: 'https://iili.io/dOzi3yG.jpg' },
+      { name: 'DATA STRUCTURES USING C', description: '  ', image: 'https://iili.io/dOzQA9n.jpg' },
+      { name: 'DATA STRUCTURES USING C 3RD EDITION', description: '  ', image:  'https://iili.io/dOzt64p.jpg' },
+      { name: 'DATA STRUCTURES USING JAVA', description: '', image: 'https://iili.io/dOzb0zu.jpg' },
+      { name: 'COMPUTER ORGANIZATION AND EMBEDDED SYSTEMS', description: '', image: 'https://iili.io/dOzpyb9.jpg' },
+      { name: 'FUNDAMENTALS OF COMPUTERS', description: '', image: 'https://iili.io/dOI9Dw7.jpg' },
+      { name: 'FUNDAMENTALS OF COMPUTERS', description: '   ', image: 'https://iili.io/dOI33qF.jpg' },
+      {name: 'FUNDAMENTALS OF DATA STRUCTURES IN C++', description: '   ', image: ' https://iili.io/dOIFOas.jpg' },
+      { name: 'FUNDAMENTALS OF COMPUTERS', description: '   ', image: 'https://iili.io/dOIfF19.jpg' },
+      { name: 'FUNDAMENTALS OF DATABASE SYSTEMS', description: '   ', image: 'https://iili.io/dOIfm41.jpg' },
+      { name: 'FUNDAMENTALS OF RELATIONAL DATABASE SYSTEMS', description: '   ', image: 'https://iili.io/2fYR1Hl.jpg' },
+      { name: 'IBM PC AND CLONES', description: '   ', image: 'https://iili.io/dOInqGV.jpg' },
+      { name: 'INFORMATION TECHNOLOGY FOR MANAGERS', description: '   ', image: 'https://iili.io/dOIoaxj.jpg' },
+      { name: 'INFORMATION AND COMMUNICATION TECHNOLOGY-II', description: '   ', image: 'https://iili.io/dOIz4Vf.jpg' },
+      { name: 'INFORMATION AND COMMUNICATION TECHNOLOGY-2', description: '   ', image: 'https://iili.io/dOIuuwX.jpg' },
+      {name: 'INFORMATION AND COMMUNICATION TECHNOLOGY', description: '   ', image: 'https://iili.io/dOIA4m7.jpg' },
+      { name: 'INFORMATION AND COMMUNICATION TECHNOLOGY-1', description: '   ', image: 'https://iili.io/dOIRbGs.jpg' },
+      { name: 'INFORMATION AND COMMUNICATION TECHNOLOGY-II', description: '   ', image: 'https://iili.io/dOI5yWF.jpg' },
+      { name: 'INFORMATION TECHNOLOGY', description: '', image:  'https://iili.io/dOI7b2f.jpg' },
+      { name: 'INFORMATION AND COMMUNICATION TECHNOLOGY', description: '   ', image: 'https://iili.io/dOIYVGn.jpg' },
+      { name: 'INTERNET FUNDAMENTALS AND WEB TOOLS', description: '   ', image: 'https://iili.io/dOIaEHx.jpg' },
+      { name: 'INTRODUCTION TO DATABASE SYSTEMS 8TH EDITION', description: '   ', image: 'https://iili.io/dOIcg7j.jpg' },
+      { name: 'INTRODUCTION TO PYTHON PROGRAMMING', description: '   ', image: 'https://iili.io/dOIl0TQ.jpg' },
+      {name: 'INTRODUCTION TO OBJECT-ORIENTED PROGRAMMING 3RD EDITION', description: '   ', image: ' https://iili.io/dOI0Atp.jpg' },
+      { name: 'IT FOR MANAGERS', description: '   ', image: 'https://iili.io/dOI1lLB.jpg' },
+      { name: 'JAVA 8TH EDITION', description: '   ', image: 'https://iili.io/dOIE3CB.jpg' },
+      { name: 'JAVA HOW TO PROGRAM', description: '   ', image: 'https://iili.io/dOIGFt4.jpg' },
+      { name: 'JAVA 13TH EDITION', description: '   ', image: '' },
+      { name: 'JAVA 9', description: '   ', image: 'https://iili.io/dOIMrkg.jpg' },
+      { name: 'LET US C', description: '   ', image: 'https://iili.io/dOIWVDb.jpg' },
+      { name: 'MASTERING C++', description: '   ', image: 'https://iili.io/dOIX9s4.jpg' },
+      { name: 'MODERN OPERATING SYSTEMS', description: '   ', image: 'https://iili.io/dOIXyyF.jpg' },
+      { name: 'OFFICE AUTOMATION TOOL', description: '   ', image: 'https://iili.io/dOIhmP4.jpg' },
+      { name: 'OBJECT ORIENTED ANALYSIS AND DESIGN', description: '   ', image:  'https://iili.io/dOIjSe9.jpg' },
+      { name: 'OBJECT-ORIENTED ANALYSIS AND DESIGN WITH APPLICATIONS', description: '   ', image: 'https://iili.io/dOINwS2.jpg' },
+      { name: 'OBJECT ORIENTED PROGRAMMING USING JAVA', description: '   ', image: 'https://iili.io/dOIkFGs.jpg' },
+      { name: 'OBJECT ORIENTED PROGRAMMING USING JAVA', description: '   ', image: 'https://iili.io/dOIv3OB.jpg' },
+      { name: 'JAVA PROGRAMMING', description: '   ', image: 'https://iili.io/dOIv85Q.jpg' },
+      {name: 'OBJECT ORIENTED PROGRAMMING WITH C++', description: '   ', image: ' https://iili.io/dOI8qp2.jpg' },
+      { name: 'OBJECT ORIENTED PROGRAMMING IN C++', description: '   ', image: 'https://iili.io/dOI8U3G.jpg' },
+      { name: 'OBJECT ORIENTED PROGRAMMING THROUGH JAVA', description: '   ', image: 'https://iili.io/dOISmiX.jpg' },
+      { name: 'OBJECT ORIENTED PROGRAMMING THROUGH JAVA', description: '   ', image: 'https://iili.io/dOIgqpR.jpg' },
+      { name: 'OPEN SOURCE SOFTWARE', description: '   ', image: 'https://iili.io/dOTqEmJ.jpg' },
+      { name: 'OPERATING SYSTEMS', description: '   ', image: 'https://iili.io/dOTq4B2.jpg' },
+      { name: 'OPERATING SYSTEM', description: '   ', image: 'https://iili.io/dOTqbhx.jpg' },
+      { name: 'OBJECT ORIENTED PROGRAMMING USING JAVA', description: '   ', image: 'https://iili.io/dOTBI2t.jpg' },
+      {name: 'OPERATING SYSTEMS', description: '   ', image: 'https://iili.io/dOTBMve.jpg' },
+      { name: 'OPERATING SYSTEM AND DIAGNOSTICS TOOLS', description: '   ', image: 'https://iili.io/dOTBZFI.jpg' },
+      { name: 'OPERATING SYSTEM CONCEPTS', description: '   ', image: 'https://iili.io/dOTCPRe.jpg' },
+      { name: 'OPERATING SYSTEM CONCEPTS', description: '   ', image:  'https://iili.io/dOTnDIs.jpg' },
+      { name: 'OPERATING SYSTEMS', description: '   ', image: 'https://iili.io/dOToVyX.jpg' },
+      { name: 'PRACTICAL DATA SCIENCE WITH R', description: '   ', image: 'https://iili.io/dOTzCgV.jpg' },
+      { name: 'PROBLEM SOLVING IN C', description: '   ', image: 'https://iili.io/dOTzDTF.jpg' },
+      { name: 'PROGRAMMING IN C', description: '   ', image: 'https://iili.io/dOTI9Ev.jpg' },
+      {name: 'PROGRAMMING WITH JAVA', description: '   ', image: ' https://iili.io/dOTI3vI.jpg' },
+      { name: 'PROGRAMMING WITH C', description: '   ', image: 'https://iili.io/dOTII3l.jpg' },
+      { name: 'PROGRAMMING WITH JAVA', description: '   ', image: 'https://iili.io/dOTIZF4.jpg' },
+      { name: 'PROGRAMMING IN C', description: '   ', image: 'https://iili.io/dOTTjJ2.jpg' },
+      { name: 'PROGRAMMING IN C', description: '   ', image: 'https://iili.io/dOTux72.jpg' },
+      { name: 'PYTHON FOR EVERYBODY', description: '   ', image: 'https://iili.io/dOTAd3x.jpg' },
+      { name: 'SOFTWARE ENGINEERING', description: '   ', image: 'https://iili.io/dOTAXuS.jpg' },
+      { name: 'SOFTWARE ENGINEERING', description: '   ', image: 'https://iili.io/dOTAioF.jpg' },
+      {name: 'SOFTWARE ENGINEERING', description: '   ', image: 'https://iili.io/dOTRcOB.jpg' },
+      { name: 'SOFTWARE ENGINEERING', description: '   ', image: 'https://iili.io/dOTRObI.jpg' },
+      { name: 'SOFTWARE TESTING TECHNIQUES', description: '   ', image: 'https://iili.io/dOT53zP.jpg' },
+      { name: 'TALLY ERP 9', description: '   ', image:  'https://iili.io/dOT79Gn.jpg' },
+      { name: 'THE C PROGRAMMING LANGUAGE', description: '   ', image: 'https://iili.io/dOT7cn1.jpg' },
+      { name: 'UNIX', description: '   ', image: 'https://iili.io/dOTYdV1.jpg' },
+      { name: 'WEB PROGRAMMING', description: '   ', image: 'https://iili.io/dOTY1xS.jpg' },
+      { name: 'WEB TECHNOLOGIES', description: '   ', image: 'https://iili.io/dOTYg0g.jpg' },
+      {name: 'WEB TECHNOLOGIES', description: '   ', image: 'https://iili.io/dOTaH7f.jpg ' },
+      { name: 'WEB TECHNOLOGIES', description: '   ', image: 'https://iili.io/dOTaB1e.jpg' },
+      { name: 'WEB TECHNOLOGIES', description: '   ', image: 'https://iili.io/dOTaYEF.jpg' },
+      { name: 'WORKING WITH C', description: '   ', image: 'https://iili.io/dOTaeYG.jpg' },
+      
+    ];
+</script>
+      
+
+<script src="subject.js"></script>
+</html>
+           

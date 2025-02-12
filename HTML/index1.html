@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Library</title>
+    <link rel="stylesheet" href = "style.css">
+</head>
+<body>
+   <header>
+        <div class="top ">
+            <div class="logo-space"><img src="https://media.collegedekho.com/media/img/institute/logo/au_logo_footer.81a35955747a9db6666b.png"></div>
+            <div class="library-title">ADITYA LIBRARY </div>
+            <button class="about-button" onclick="openAbout()">A<br>b<br>o<br>u<br>t</button>
+        </div>
+    </header>
+    <div class="rules">
+        <img clas="rulimg" src="https://iili.io/2OocDep.jpg">
+        <button class="ok"onclick = "minute(); disappear(); ">ok</button>
+    </div>
+    <div class="about-popup">
+        <button onclick="closeAbout()">x</button>
+        <h1>CREATED BY</h1>
+        <h2>MSCS STUDENTS</h2>
+    </div>
+       <h1 class="greetu" ></h1>
+    <div class="container">
+        <div class="slider">
+            <!-- Slider content goes here -->
+            <div class="item item1"><a href="novels.html"><img class="head" src="https://storage.googleapis.com/a1aa/image/f740d4ae-1a9d-415b-8312-08d3511c871d.jpeg" alt="novels"></a></div>
+            <div class="item item2"><a href="science-and-humanities.html"><img class="head" src="https://storage.googleapis.com/a1aa/image/79e2641c-2153-4e7f-a970-65ce72280c22.jpeg" alt="science and humanities"></a></div>
+            <div class="item item3"><a href="computer.html"><img class="head" src="https://storage.googleapis.com/a1aa/image/a01d9825-44f0-44d1-8892-c2441d31f764.jpeg" alt="computer"></a></div>
+            <div class="item item4"><a href=""><img class="head" src="https://iili.io/dlNYInt.jpg" alt="crt"></a></div>
+            <div class="item item5"><a href="journels.html"><img class="head" src="https://storage.googleapis.com/a1aa/image/f109b980-f1f9-488f-a875-9ade7ac3f74b.jpeg" alt="journels"></a></div>
+            <div class="item item6"><a href="management.html"><img class="head" src="https://storage.googleapis.com/a1aa/image/61ecbc55-e490-4eaf-a06c-ecf813b02d83.jpeg" alt="management"></a></div>
+            <div class="item item7"><a href="general-knowledge.html"><img class="head" src="https://iili.io/dleEdPV.md.jpg" alt="Image 3"></a></div>
+            <div class="item item8"><a href="electronics.html"><img class="head" src="https://storage.googleapis.com/a1aa/image/8cc056e5-ffc7-4aff-9bf7-c52188353ee6.jpeg" alt="electronics"></a></div>
+    </div>
+        <div class="controls">
+            <button class="control-button1" id="prev">&#9664;</button>
+            <button class="control-button2" id="next">&#9654;</button>
+        </div>
+    </div>
+    <script>
+        const slider = document.querySelector('.slider');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        let angle = 0;
+        const items = document.querySelectorAll('.item');
+        const itemCount = items.length;
+        const angleStep = 360 / itemCount;
+        function updateTransform() {
+            slider.style.transform = `translateZ(-150px) rotateY(${angle}deg)`;
+        }
+        prevButton.addEventListener('click', () => {
+            angle -= angleStep;
+            if (angle < 0) angle += 360; // Loop around
+            updateTransform();
+        });
+
+        nextButton.addEventListener('click', () => {
+            angle += angleStep;
+            if (angle >= 360) angle -= 360; // Loop around
+            updateTransform();
+        });
+
+        function openAbout() {
+            alert('This is the About section of Aditya Library.');
+        }
+        function disappear() {
+    document.querySelector('.rules').style.display = 'none';
+   
+}
+function openAbout() {
+    document.querySelector('.about-popup').style.display = 'block';
+    document.querySelector('.overlay').style.display = 'block';
+}
+
+function closeAbout() {
+    document.querySelector('.about-popup').style.display = 'none';
+    document.querySelector('.overlay').style.display = 'none';
+}
+
+
+    function minute (){
+        const name = localStorage.getItem('username');    
+        document.querySelector('.greetu').classList.add('greetingMessage');
+        
+    if (name) {
+       
+        document.querySelector('.greetingMessage').textContent = `WELCOME ${name} ...!`;
+    } else {
+        document.querySelector('.greetingMessage').textContent = 'Hey, Good Morning!';
+    } 
+        setTimeout(function () {
+         document.querySelector('.greetu').classList.add('delete');
+        },3000)
+    }
+    
+
+    </script>
+</body>
+</html>
